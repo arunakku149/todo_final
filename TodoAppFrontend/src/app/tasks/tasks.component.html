@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        
+            <button (click)="changeLanguage('ml')" class="me-2" style="border: 0; background-color: #ffffff; text-decoration: underline; color: rgba(168, 16, 16, 0.973); ">മലയാളം</button> <span>  </span>
+            <button (click)="changeLanguage('en')" class="mb-3" style="border: 0; background-color: #ffffff; text-decoration: underline; color: rgba(168, 16, 16, 0.973);">English</button>
+            <button class="logout-btn mb-4 btn btn-outline-danger" (click)="logout()">{{'Logout' | translate}}</button>
+
+        <h2>{{'Welcomeuser' | translate}} {{ userName }}</h2>
+        <h5>{{'Stay on Track and Crush Your' | translate}} <b>{{'goals!' | translate}}</b></h5>
+
+        <div class="form-container">
+            <form (ngSubmit)="addTask()">
+                <div class="form-group mb-3">
+                    <input type="text" [(ngModel)]="newTask.title" name="title" class="form-control" placeholder="{{'Task Title' | translate}}" required />
+                </div>
+                <div class="form-group mb-3">
+                    <input type="text" [(ngModel)]="newTask.description" name="description" class="form-control" placeholder="{{'Task Description' | translate}}" required/>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">{{'Add Task' | translate}}</button>
+            </form>
+        </div>
+        <div id="filter">
+            <label for="filter" class="me-2">{{'Filter Tasks' | translate}} : </label>
+            <select id="filter" [(ngModel)]="filterStatus" (ngModelChange)="loadTasks()" >
+                <option value="all">{{'All' | translate}}</option>
+                <option value="completed">{{'Completed' | translate}}</option>
+                <option value="incomplete">{{'Incomplete' | translate}}</option>
+            </select>
+
+        </div>
+        <div class="table-container">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>{{'Title' | translate}}</th>
+                        <th>{{'Description' | translate}}</th>
+                        <th>{{'Status' | translate}}</th>
+                        <th>{{'Actions' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of filteredTasks">
+                        <ng-container *ngIf="!editingTask || editingTask.id !== task.id">
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.status }}</td>
+                        <td>
+                            <button class="btn btn-info btn-custom" (click)="editTask(task)">{{'Edit' | translate}}</button>
+                            <button class="btn btn-danger btn-custom" (click)="deleteTask(task.id)">{{'Delete' | translate}}</button><br>
+                            <button class="btn btn-warning btn-custom" (click)="changeStatus(task)">{{'Change Status' | translate}}</button>
+                        </td>
+                        </ng-container>
+
+                        <ng-container *ngIf="editingTask && editingTask.id === task.id">
+                            <!-- Edit mode -->
+                            <td><input [(ngModel)]="editingTask.title" /></td>
+                            <td><input [(ngModel)]="editingTask.description" /></td>
+                            <td>
+                              <select [(ngModel)]="editingTask.status">
+                                <option value="completed">{{'Completed' | translate}}</option>
+                                <option value="incomplete">{{'Incomplete' | translate}}</option>
+                              </select>
+                            </td>
+                            <td>
+                              <button (click)="updateTask()" class="btn btn-success btn-custom">{{'Save' | translate}}</button>
+                              <button (click)="cancelEdit()" class="btn btn-danger btn-custom">{{'Cancel' | translate}}</button>
+                            </td>
+                          </ng-container>
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>

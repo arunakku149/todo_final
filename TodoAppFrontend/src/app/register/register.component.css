@@ -1,0 +1,30 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.container-fluid {
+    display: -webkit-flex;
+    width: 100%;
+    --bs-gutter-x: 0;
+}
+h1, input, select{
+    margin-bottom: 10px;
+}
+.overlay-left, .form{
+    width: 100%; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.overlay-left{
+    background: #BB0B35;
+}
+h1{
+color: white;
+font-weight: bold;
+}

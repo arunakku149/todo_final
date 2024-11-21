@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="container">
+        <h1>{{'welcome' | translate}}</h1>
+        <a routerLink='login' class="btn btn-danger" id="get">{{'Get Started' | translate}}</a>
+    </div>
+
+    <div style="margin-top: 70px;">
+        <button (click)="changeLanguage('ml')" class="me-2" style="border: 0; background-color: #f5f5f5; text-decoration: underline; color: rgba(168, 16, 16, 0.973);">മലയാളം</button> <span>  </span>
+        <button (click)="changeLanguage('en')" style="border: 0; background-color: #f5f5f5; text-decoration: underline; color: rgba(168, 16, 16, 0.973);">English</button>
+    </div>
+    
+</body>
+</html>

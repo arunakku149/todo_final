@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="form">   
+            <form (ngSubmit)="onLogin()">
+                <h2 style="color: black; margin-bottom: 50px;">{{'LogIn' | translate}}</h2>
+                <p *ngIf="errorMessage">{{ errorMessage }}</p>
+                <input type="email" [(ngModel)]="email" name="email" placeholder="{{'Email' | translate}}" required class="form-control"/>
+                <input type="password" [(ngModel)]="password" name="password" placeholder="{{'Password' | translate}}" required class="form-control"/>
+                <button type="submit" class="btn btn-danger" id="login">{{'LogIn' | translate}}</button>
+            </form>
+
+            <span style="margin-top: 30px;">
+                <button (click)="changeLanguage('ml')" class="me-2" style="border: 0; background-color: #ffffff; text-decoration: underline; color: rgba(168, 16, 16, 0.973);">മലയാളം</button> <span>  </span>
+                <button (click)="changeLanguage('en')" style="border: 0; background-color: #ffffff; text-decoration: underline; color: rgba(168, 16, 16, 0.973);">English</button>
+            </span>
+        </div>
+        <div class="overlay-left">
+            <h1>{{'Hello Friend!' | translate}}</h1>
+            <p style="color: white;">{{'Join us today to unlock your potential and accomplish your' | translate}} <b>{{'goals!' | translate}}</b></p>
+            <button class="btn btn-outline-light" (click)="registerClick()">{{'Signup' | translate}}</button>
+        </div>
+        
+       
+    </div>
+</body>
+</html>
